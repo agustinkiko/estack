@@ -8,6 +8,7 @@ one home.
 | Thing | One home |
 |---|---|
 | Rules for every session | `plugins/core/rules.md` (loaded by `plugins/core/hooks/hooks.json`) |
+| Codex copy of the rules | generated into `~/.codex/AGENTS.md` by `scripts/codex-setup.sh`. Never edit it. |
 | How to do a task | one skill in `plugins/<plugin>/skills/<name>/SKILL.md` |
 | Code-quality rules | one `principle-*` skill each in `plugins/core/skills/` |
 | Credit for adapted work | `NOTICE.md` |
