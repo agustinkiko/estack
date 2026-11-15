@@ -55,6 +55,24 @@ scripts/init-repo.sh work ~/code/some-work-repo
 Then fill in the `<...>` fields in that repo's `AGENTS.md` and commit.
 Claude Code offers to install the plugins the next time it opens the repo.
 
+## Use in Codex
+
+Codex reads this marketplace as it is. Skills keep the same names, such
+as `core:deploy`. Codex does not load the rules through the hook without
+extra approval, so a script copies them into Codex's global `AGENTS.md`:
+
+```bash
+scripts/codex-setup.sh both
+```
+
+Use `personal`, `work`, or `both` for the plugins next to `core`. Rerun
+it after estack changes. Your own text in `~/.codex/AGENTS.md` stays.
+
+If Codex asks you to trust estack's hook, answer no. The rules already
+load from `AGENTS.md`, and a yes loads them twice.
+
+Each repo's own `AGENTS.md` works in Codex with no setup.
+
 ## Install by hand
 
 Inside Claude Code:
