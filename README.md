@@ -24,11 +24,17 @@ the start of every session. Repos hold only their own facts.
 | Plugin | Skills |
 |---|---|
 | core | `dev-start`, `dev-prove`, `dev-ship`, `deploy`, `incident`, `write-plain` |
+| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-fix-root-causes` |
 | personal | `launch` |
 | work | `change` |
 
 Call a skill as `plugin:skill`, for example `core:deploy`. The agent also
 picks skills on its own from their descriptions.
+
+The principle skills are code rules that cut AI slop while code is
+written. To steer the agent, name one: "apply subtract before you add".
+They are adapted from [pstack](https://github.com/backnotprop/pstack).
+See `NOTICE.md`.
 
 `core:deploy` is one procedure for every platform. Platform commands live
 in `plugins/core/skills/deploy/platforms/`: `compose-ssh` (home lab),
