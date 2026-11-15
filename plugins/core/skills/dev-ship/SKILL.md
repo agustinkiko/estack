@@ -1,30 +1,56 @@
 ---
 name: dev-ship
-description: Use when a code change is done and proven and the task calls for a PR. Self-reviews the diff, rebases, pushes, and opens a draft PR with the proof.
+description: Use when a code change is done and proven and the task calls for a PR. Self-reviews the diff, shapes small ordered commits, pushes, and opens a ready PR with the proof.
 ---
 
 # Dev ship
 
-1. **Self-review** `git diff origin/main...HEAD`. Remove debug code,
-   commented-out code, secrets, and files outside the task. Add error
-   handling to new network and database calls. Rerun the checks.
-2. **Rebase**: `git fetch origin && git rebase origin/main`. Rerun the checks.
-3. **Commit** with one message: what changed and why. Apply `core:write-plain`.
-4. **Push**: `git push -u origin <branch>`.
-5. **Draft PR.** Use the repo's PR template if there is one. Otherwise:
+1. **Self-review** `git diff origin/main...HEAD`. Remove debug code, dead
+   code, secrets, and files outside the task. Check every comment against
+   `core:principle-why-only-comments`. Rerun the checks.
+2. **Shape the commits.** Rebase onto `origin/main` into small, ordered
+   commits:
+   - Each commit builds and passes the checks on its own.
+   - The order tells the story: a deletion before the new code, a failing
+     test before the fix.
+   - A fix-up goes into the commit it belongs to:
+
+     ```bash
+     git commit --fixup <sha>
+     GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash origin/main
+     ```
+
+   Rerun the checks on the last commit.
+3. **Write the messages.** Titles use Conventional Commits:
+   `type(scope): subject`. Types are `feat`, `fix`, `docs`, `refactor`,
+   `test`, `perf`, and `chore`. The subject is imperative with no period.
+   A body never repeats its title. Apply `core:write-plain`.
+4. **Push**: `git push -u origin <branch>`. After rebasing a pushed
+   branch, add `--force-with-lease`.
+5. **Open the PR ready for review**, not as a draft. Use the repo's PR
+   template if it has one. Otherwise use this body. Keep it under about
+   40 lines and drop any empty section except Scope:
 
    ```markdown
-   ## What changed
    ## Why
-   ## How I tested it
-   (from .artifacts/<task>/proof.md)
-   ## Risks
+   The goal and the problem, 1-3 sentences.
+   ## What changed
+   1-3 bullets.
+   ## Scope
+   What it covers and what it leaves out.
+   ## Tradeoffs
+   Only rejected options a reviewer would ask about.
+   ## Blast radius
+   Who or what it touches, and why that is safe.
+   ## Verification
+   1-3 bullets: the real run and its result, from .artifacts/<task>/proof.md.
    ```
 
    ```bash
-   gh pr create --draft --title "<title>" --body-file <body.md>
+   gh pr create --title "<type(scope): subject>" --body-file <body.md>
    ```
 
+   Put screenshots or video after the sections.
 6. **Bot review**, if the repo has one (Greptile, CodeRabbit, Claude).
    Fix valid findings and push. At most 3 rounds. Report the real result.
 7. **Report** the PR URL, checks run, and anything still open.
