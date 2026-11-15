@@ -42,5 +42,10 @@ for f in plugins/core/skills/deploy/platforms/*.md; do
   done
 done
 
+# 6. Every script parses.
+for f in scripts/*.sh; do
+  bash -n "$f" || err "$f: bash syntax error"
+done
+
 [ "$fail" = 0 ] && echo "all checks passed"
 exit "$fail"
