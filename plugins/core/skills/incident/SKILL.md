@@ -28,8 +28,9 @@ step 5. Do not debug in production while users are hurting.
 
 ## 4. Find the cause
 
-Read logs around the start time. Find the first error, not the loudest.
-Fix it through the code change workflow.
+Follow `core:principle-fix-root-causes`. Read logs around the start time
+and find the first error, not the loudest. Fix it through the code change
+workflow.
 
 ## 5. Write the note
 

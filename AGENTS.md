@@ -9,6 +9,8 @@ one home.
 |---|---|
 | Rules for every session | `plugins/core/rules.md` (loaded by `plugins/core/hooks/hooks.json`) |
 | How to do a task | one skill in `plugins/<plugin>/skills/<name>/SKILL.md` |
+| Code-quality rules | one `principle-*` skill each in `plugins/core/skills/` |
+| Credit for adapted work | `NOTICE.md` |
 | Platform commands | `plugins/core/skills/deploy/platforms/<platform>.md` |
 | Facts about one repo | that repo's `AGENTS.md` (from `templates/AGENTS.md`) |
 | Which plugins a repo uses | that repo's `.claude/settings.json` (from `scripts/init-repo.sh`) |
