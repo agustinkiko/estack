@@ -3,6 +3,20 @@
 My agent stack for Claude Code: one set of rules and skills, reused by
 every work repo.
 
+![estack at a glance: what feeds each agent session, the route every code change takes, and how lessons flow back](docs/estack.svg)
+
+## How it helps coding agents
+
+- **Same start every session.** A hook loads `plugins/core/rules.md`, so
+  the agent knows when to ask, what is unsafe, and how to report.
+- **Facts, not guesses.** Each repo's `AGENTS.md` names its deploy
+  targets and checks. If a fact is missing, the agent asks.
+- **One route for every change.** `core:dev-start`, `core:dev-prove`,
+  `core:dev-ship`. Each PR carries proof from before and after the change.
+- **Less slop.** The `principle-*` skills shape code while it is written.
+- **Better every lap.** A lesson goes into one home in estack. Every repo
+  gets it in its next session.
+
 ## How it fits together
 
 ```

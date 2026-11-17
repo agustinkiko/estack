@@ -16,6 +16,7 @@ one home.
 | Facts about one repo | that repo's `AGENTS.md` (from `templates/AGENTS.md`) |
 | Which plugins a repo uses | that repo's `.claude/settings.json` (from `scripts/init-repo.sh`) |
 | Plugin description and version | `plugins/<plugin>/.claude-plugin/plugin.json` |
+| README diagram | `docs/estack.svg`. Update it when skills or the workflow change. |
 
 ## Rules for changes
 
