@@ -3,8 +3,6 @@
 <!-- Facts about this repo only. All rules and workflow come from estack.
      Do not copy estack rules here. Delete sections that do not apply. -->
 
-Context: <personal | work>
-
 ## Deploy targets
 
 Platform must match a file in estack `plugins/core/skills/deploy/platforms/`.
@@ -20,13 +18,7 @@ Platform must match a file in estack `plugins/core/skills/deploy/platforms/`.
 - `<typecheck command>`
 - `<test command>`
 
-## Marketing (personal context)
-
-- Audience: <who uses the app>
-- Voice: <for example: friendly, Taglish ok, no hype>
-- Channels: <X, LinkedIn, email, ...>
-
-## Work (work context)
+## Process
 
 - Ticket key: <ABC>
 - Reviewers: <team or CODEOWNERS>

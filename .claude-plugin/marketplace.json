@@ -1,10 +1,8 @@
 {
   "name": "estack",
   "owner": { "name": "agustinkiko" },
-  "metadata": { "description": "Shared agent rules and skills for my apps, home lab, and work repos." },
+  "metadata": { "description": "Shared agent rules and skills for my work repos." },
   "plugins": [
-    { "name": "core", "source": "./plugins/core" },
-    { "name": "personal", "source": "./plugins/personal" },
-    { "name": "work", "source": "./plugins/work" }
+    { "name": "core", "source": "./plugins/core" }
   ]
 }

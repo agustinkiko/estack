@@ -11,7 +11,7 @@ Order: stop the harm, find the cause, write it down.
 
 What is broken, who is affected, since when.
 **S1** down or data at risk. **S2** a main feature broken. **S3** minor.
-Work context: also follow the incident process in the repo's `AGENTS.md`.
+Also follow the incident process in the repo's `AGENTS.md`.
 
 ## 2. What changed?
 

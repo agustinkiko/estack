@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 # Connect a repo to estack.
-# Usage: scripts/init-repo.sh <personal|work> <path-to-repo>
+# Usage: scripts/init-repo.sh <path-to-repo>
 # Writes .claude/settings.json, plus AGENTS.md and CLAUDE.md if missing.
 set -euo pipefail
 
-context="${1:-}"
-repo="${2:-}"
-case "$context" in
-  personal|work) ;;
-  *) echo "usage: $0 <personal|work> <path-to-repo>" >&2; exit 1 ;;
-esac
+repo="${1:-}"
+[ -n "$repo" ] || { echo "usage: $0 <path-to-repo>" >&2; exit 1; }
 [ -d "$repo" ] || { echo "not a directory: $repo" >&2; exit 1; }
 
 stack="$(cd "$(dirname "$0")/.." && pwd)"
@@ -22,8 +18,7 @@ new_settings="$(cat <<EOF
     "estack": { "source": { "source": "github", "repo": "agustinkiko/estack" } }
   },
   "enabledPlugins": {
-    "core@estack": true,
-    "$context@estack": true
+    "core@estack": true
   }
 }
 EOF
@@ -31,7 +26,7 @@ EOF
 
 if [ -f "$settings" ]; then
   command -v jq >/dev/null || { echo "$settings exists and jq is not installed. Merge by hand." >&2; exit 1; }
-  jq -s '.[0] * .[1]' "$settings" <(echo "$new_settings") > "$settings.tmp"
+  jq -s '.[0] * .[1] | del(.enabledPlugins["personal@estack", "work@estack"])' "$settings" <(echo "$new_settings") > "$settings.tmp"
   mv "$settings.tmp" "$settings"
   echo "merged   $settings"
 else
@@ -41,8 +36,7 @@ fi
 
 name="$(basename "$(cd "$repo" && pwd)")"
 if [ ! -f "$repo/AGENTS.md" ]; then
-  sed -e "s/<REPO NAME>/$name/" -e "s/<personal | work>/$context/" \
-    "$stack/templates/AGENTS.md" > "$repo/AGENTS.md"
+  sed -e "s/<REPO NAME>/$name/" "$stack/templates/AGENTS.md" > "$repo/AGENTS.md"
   echo "created  $repo/AGENTS.md  (fill in the <...> fields)"
 else
   echo "kept     $repo/AGENTS.md"

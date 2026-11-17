@@ -26,7 +26,7 @@ with the user, and add it to estack.
    - The change is merged to `main` and its checks passed.
    - It ran on dev first.
    - Any database migration is safe to run before the new code is live.
-   - Work context: finish `work:change` first.
+   - Infrastructure change: finish `core:change` first.
 
 ## 4. Deploy and verify
 

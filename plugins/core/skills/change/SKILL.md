@@ -1,12 +1,12 @@
 ---
 name: change
-description: Use for any infrastructure or pipeline change in a work-context repo (Terraform, Kubernetes, CI/CD, cloud config). Adds the employer's ticket, plan, review, and approval steps on top of the core workflow.
+description: Use for any infrastructure or pipeline change (Terraform, Kubernetes, CI/CD, cloud config). Adds the ticket, plan, review, and approval steps on top of the core workflow.
 ---
 
-# Work change
+# Change
 
 The company process (ticket key, reviewers, approver, change window,
-change tool, incident process) is in the repo's "Work" section of
+change tool, incident process) is in the "Process" section of the repo's
 `AGENTS.md`. This skill never holds company details.
 
 ## 1. Ticket

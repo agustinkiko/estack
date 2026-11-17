@@ -5,7 +5,7 @@ Skills and repo files add to them and never repeat them.
 
 ## Where facts live
 
-- Repo facts (context, deploy targets, checks, work process) are in the
+- Repo facts (deploy targets, checks, process) are in the
   repo's `AGENTS.md`. If a fact you need is missing, ask. Do not guess.
 - Platform commands are in `core:deploy` under `platforms/`.
 
@@ -26,8 +26,7 @@ Questions, reviews, and research need no branch, commit, or PR.
 | Writing or reviewing code | every `core:principle-*` skill whose description fits |
 | Deploy or live config change | `core:deploy` |
 | Something is broken | `core:incident` |
-| Work context infra change | `work:change` |
-| Launch post, email, changelog | `personal:launch` |
+| Infrastructure or pipeline change | `core:change` |
 | Any text a person reads | `core:write-plain` |
 
 ## Principles
