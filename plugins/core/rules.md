@@ -7,7 +7,24 @@ Skills and repo files add to them and never repeat them.
 
 - Repo facts (deploy targets, checks, process) are in the
   repo's `AGENTS.md`. If a fact you need is missing, ask. Do not guess.
-- Platform commands are in `core:deploy` under `platforms/`.
+- Deploy process is in `core:deploy`. Deploy commands are in the repo's
+  `AGENTS.md`.
+
+## Repo settings
+
+A repo's `AGENTS.md` can set these in its "Repo settings" table. A row
+it leaves out takes the default. Skills use the names in angle brackets,
+never the default values.
+
+| Setting | Default |
+|---|---|
+| `<base branch>` | `main` |
+| `<branch name>` | `agent/<task>` |
+| `<worktree folder>` | `../worktrees/<task>` |
+| `<proof folder>` | `.artifacts/<task>` |
+| `<docs home>` | the repo's `docs/` folder |
+| `<writing skill>` | `core:write-plain` |
+| `<verify skill>` | none |
 
 ## Start of every task
 
@@ -27,7 +44,7 @@ Questions, reviews, and research need no branch, commit, or PR.
 | Deploy or live config change | `core:deploy` |
 | Something is broken | `core:incident` |
 | Infrastructure or pipeline change | `core:change` |
-| Any text a person reads | `core:write-plain` |
+| Any text a person reads | `<writing skill>` |
 
 ## Principles
 
@@ -51,7 +68,7 @@ Questions, reviews, and research need no branch, commit, or PR.
 
 ## Safety
 
-- Never commit to `main`. Never merge unless asked.
+- Never commit to `<base branch>`. Never merge unless asked.
 - Force push only with `--force-with-lease`, only on your own branch.
 - Never print secret values. Show variable names only.
 - Never capture or paste secrets, customer data, or internal hostnames
@@ -64,4 +81,6 @@ Questions, reviews, and research need no branch, commit, or PR.
 - Back each claim with its evidence, or label it inferred or a guess.
   Never hand the user a check you could run yourself.
 - Never invent a link, citation, or result.
+- Use the environment names from the repo's Deploy targets table. Keep
+  evidence from each environment apart.
 - Short sentences, plain words.

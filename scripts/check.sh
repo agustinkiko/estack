@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Checks estack: manifests, skill names, skill references, and repeated rules.
+# Checks estack: manifests, skill names, skill references, repeated rules,
+# and hard-coded repo defaults.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 fail=0
@@ -35,14 +36,26 @@ while IFS= read -r line; do
   [ -z "$hits" ] || err "rule repeated outside rules.md: '$line' in $hits"
 done < plugins/core/rules.md
 
-# 5. Every platform file has the five sections core:deploy uses.
+# 5. Platform files have the five sections core:deploy uses, and hold
+#    process only. Commands belong in each repo's AGENTS.md, which the
+#    template must give the same five sections.
 for f in plugins/core/skills/deploy/platforms/*.md; do
   for s in Status "Current version" Deploy Logs Rollback; do
     grep -q "^## $s" "$f" || err "$f: missing section '## $s'"
   done
+  ! grep -q '^ *```' "$f" || err "$f: code block in a platform file. Move commands to the repo's AGENTS.md."
+done
+for s in Status "Current version" Deploy Logs Rollback; do
+  grep -q "^### $s" templates/AGENTS.md || err "templates/AGENTS.md: missing '### $s' under Deploy commands"
 done
 
-# 6. Every script parses.
+# 6. Skills use repo settings, not the defaults from rules.md.
+for value in 'origin/main' 'agent/<task>' '../worktrees/' '.artifacts/' 'incidents/'; do
+  hits="$(grep -rlF --include="*.md" -- "$value" plugins templates | grep -v 'plugins/core/rules.md')"
+  [ -z "$hits" ] || err "default '$value' hard-coded in $hits. Use the repo setting from rules.md."
+done
+
+# 7. Every script parses.
 for f in scripts/*.sh; do
   bash -n "$f" || err "$f: bash syntax error"
 done

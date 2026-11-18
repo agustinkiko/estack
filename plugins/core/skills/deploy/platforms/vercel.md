@@ -1,34 +1,25 @@
 # Vercel
 
-`<target>` is the Vercel project name.
+Use the `vercel` CLI.
 
 ## Status
 
-```bash
-vercel ls <target>
-```
+The project's newest production deployment is `Ready`.
 
 ## Current version
 
-```bash
-vercel ls <target> --prod
-```
-
-Take the newest `Ready` deployment URL.
+The URL of the newest `Ready` production deployment.
 
 ## Deploy
 
-- Normal path: merge to `main`. Vercel builds it.
-- Manual: `vercel --prod`
+- Normal path: merge to the production branch. Vercel builds it.
+- A manual production deploy skips review. Use it only when asked.
 
 ## Logs
 
-```bash
-vercel logs <deployment-url>
-```
+Logs for the new deployment URL.
 
 ## Rollback
 
-```bash
-vercel rollback <deployment-url-from-current-version>
-```
+Roll back to the deployment URL from Current version, and confirm it
+serves production again.

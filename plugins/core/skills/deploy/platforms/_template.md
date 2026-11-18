@@ -1,33 +1,26 @@
 # <platform name>
 
-`<target>` is the value from the repo's Deploy targets table.
+Process only. Write what each step must do and what to check. Exact
+commands, hosts, paths, and service names go in each repo's
+`AGENTS.md`, under "Deploy commands: <env>".
 
 ## Status
 
-```bash
-<command that shows if the service is up>
-```
+<What "up" means on this platform, and what to look at.>
 
 ## Current version
 
-```bash
-<command that prints the running deployment ID, tag, or commit>
-```
+<What identifies the running version: deployment ID, tag, commit, or
+folder. How to tell that it is really the one running.>
 
 ## Deploy
 
-```bash
-<command that deploys>
-```
+<The steps in order, and when to stop.>
 
 ## Logs
 
-```bash
-<command that shows recent logs>
-```
+<Where logs live and what to watch for.>
 
 ## Rollback
 
-```bash
-<command that returns to <version>>
-```
+<How to return to the version from Current version, and how to confirm.>

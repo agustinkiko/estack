@@ -12,7 +12,8 @@ one home.
 | How to do a task | one skill in `plugins/<plugin>/skills/<name>/SKILL.md` |
 | Code-quality rules | one `principle-*` skill each in `plugins/core/skills/` |
 | Credit for adapted work | `NOTICE.md` |
-| Platform commands | `plugins/core/skills/deploy/platforms/<platform>.md` |
+| Deploy process per platform | `plugins/core/skills/deploy/platforms/<platform>.md` |
+| Deploy commands, hosts, paths | each repo's `AGENTS.md`, under "Deploy commands: <env>" |
 | Facts about one repo | that repo's `AGENTS.md` (from `templates/AGENTS.md`) |
 | Which plugins a repo uses | that repo's `.claude/settings.json` (from `scripts/init-repo.sh`) |
 | Plugin description and version | `plugins/<plugin>/.claude-plugin/plugin.json` |
@@ -23,8 +24,8 @@ one home.
 - Before adding text, search for it: `grep -rn "<phrase>" plugins templates`.
   If it exists, point to it instead of copying it.
 - A skill names another skill as `plugin:skill` instead of repeating its steps.
-- New platform: copy `platforms/_template.md`. Do not add platform
-  commands to any other file.
+- New platform: copy `platforms/_template.md`. Platform files hold
+  process only, with no code blocks. Commands belong to the repo.
 - Every skill goes in `core`. There is one plugin.
 - This repo is public. No company names, hostnames, IPs, account IDs, or
   secrets. Those go in each repo's own `AGENTS.md`.

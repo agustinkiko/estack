@@ -25,18 +25,24 @@ estack (this repo)
 
 each repo
 ├── .claude/settings.json   turns on core
-└── AGENTS.md               facts only: deploy targets, checks, process
+└── AGENTS.md               facts only: repo settings, deploy targets, checks, process
 ```
 
 Rules are written once, in `plugins/core/rules.md`. A hook loads them at
 the start of every session. Repos hold only their own facts.
+
+Skills use repo settings such as `<branch name>` and `<docs home>`, never
+fixed values. `rules.md` lists each setting and its default. A repo
+changes one in the "Repo settings" table of its `AGENTS.md`. A repo with
+its own branch format, worktree folder, or docs site uses estack without
+a fork.
 
 ## Skills
 
 | Plugin | Skills |
 |---|---|
 | core | `dev-start`, `dev-prove`, `dev-ship`, `deploy`, `change`, `incident`, `write-plain` |
-| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-fix-root-causes` |
+| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-fix-root-causes`, `principle-idempotent-operations` |
 
 Call a skill as `plugin:skill`, for example `core:deploy`. The agent also
 picks skills on its own from their descriptions.
@@ -46,9 +52,11 @@ written. To steer the agent, name one: "apply subtract before you add".
 They are adapted from [pstack](https://github.com/backnotprop/pstack).
 See `NOTICE.md`.
 
-`core:deploy` is one procedure for every platform. Platform commands live
-in `plugins/core/skills/deploy/platforms/`: `compose-ssh` (home lab),
-`railway`, `vercel`. Add more with `_template.md`.
+`core:deploy` is one procedure for every platform. The process for each
+platform lives in `plugins/core/skills/deploy/platforms/`. The commands,
+hosts, and paths live in each repo's `AGENTS.md`. Platforms: `compose-ssh` (home lab),
+`compose-release-ssh` (one folder per release), `railway`, `vercel`.
+Add more with `_template.md`.
 
 ## Connect a repo
 
