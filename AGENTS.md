@@ -16,6 +16,7 @@ one home.
 | Facts about one repo | that repo's `AGENTS.md` (from `templates/AGENTS.md`) |
 | Which plugins a repo uses | that repo's `.claude/settings.json` (from `scripts/init-repo.sh`) |
 | Plugin description and version | `plugins/<plugin>/.claude-plugin/plugin.json` |
+| README diagram | `docs/estack.svg`. Update it when skills or the workflow change. |
 
 ## Rules for changes
 
@@ -24,8 +25,7 @@ one home.
 - A skill names another skill as `plugin:skill` instead of repeating its steps.
 - New platform: copy `platforms/_template.md`. Do not add platform
   commands to any other file.
-- Generic and safe anywhere → `core`. My own apps only → `personal`.
-  Employer work → `work`.
+- Every skill goes in `core`. There is one plugin.
 - This repo is public. No company names, hostnames, IPs, account IDs, or
   secrets. Those go in each repo's own `AGENTS.md`.
 - Bump `version` in the plugin's `plugin.json` when you change that plugin.
