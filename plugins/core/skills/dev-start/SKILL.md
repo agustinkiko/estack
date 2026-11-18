@@ -1,9 +1,12 @@
 ---
 name: dev-start
-description: Use before editing any repository for a feature, fix, or docs change. Creates an isolated git worktree and branch from origin/main. Skip for read-only questions and reviews.
+description: Use before editing any repository for a feature, fix, or docs change. Creates an isolated git worktree and branch from the repo's base branch. Skip for read-only questions and reviews.
 ---
 
 # Dev start
+
+`<base branch>`, `<branch name>`, and `<worktree folder>` come from the
+repo settings in `core` rules.
 
 ## Steps
 
@@ -12,17 +15,24 @@ description: Use before editing any repository for a feature, fix, or docs chang
 2. `git fetch origin`.
 3. Check overlap: `gh pr list`, then `gh pr diff <n> --name-only`.
    If another open PR changes the same behavior, stop and ask.
-4. Name the task: lowercase, hyphens, 4-char suffix. Example: `fix-login-a1b2`.
-5. Create and enter it:
+4. Name the task: lowercase words and hyphens, for example `fix-login`.
+   Put it in place of `<task>` in `<branch name>` and `<worktree folder>`.
+   - `<branch name>` lists choices, such as a fix prefix and a feature
+     prefix? Take the one that matches the task.
+   - It has `<username>`? Use `gh api user --jq .login`.
+   - The branch already exists? Add a 4-character suffix to the task name.
+5. If `<worktree folder>` is inside the repo, it must be ignored:
+   `git check-ignore -q <worktree folder>`. If that fails, stop and ask.
+6. Create and enter it:
 
    ```bash
-   git worktree add ../worktrees/<task> -b agent/<task> origin/main
-   cd ../worktrees/<task>
+   git worktree add <worktree folder> -b <branch name> origin/<base branch>
+   cd <worktree folder>
    git branch --show-current
    ```
 
-   The last line must print `agent/<task>`.
-6. Install dependencies in the worktree only if the checks need them.
+   The last line must print `<branch name>`.
+7. Install dependencies in the worktree only if the checks need them.
 
 ## Remember
 
@@ -32,6 +42,6 @@ description: Use before editing any repository for a feature, fix, or docs chang
 - After merge:
 
   ```bash
-  git worktree remove ../worktrees/<task>
-  git branch -D agent/<task>
+  git worktree remove <worktree folder>
+  git branch -D <branch name>
   ```

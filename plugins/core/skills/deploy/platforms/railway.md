@@ -1,28 +1,30 @@
 # Railway
 
-`<target>` is `<project>/<service>/<environment>`. Prefer the Railway MCP
-tools when connected. Otherwise use the `railway` CLI.
+Use the Railway MCP tools when connected. Otherwise use the `railway`
+CLI.
 
 ## Status
 
-- MCP: `environment-status`, `list-services`.
-- CLI: `railway status`
+Each service in the environment has a successful latest deployment.
 
 ## Current version
 
-- MCP: `list-deployments`. Take the latest successful deployment ID.
+The latest successful deployment ID of each service, and the commit it
+built.
 
 ## Deploy
 
-- Normal path: merge to the branch the service watches. Railway builds it.
-- Manual: MCP `redeploy`, or CLI `railway up --service <service>`.
+- Normal path: merge to the branch the service watches. Railway builds
+  each merge.
+- A manual upload lasts only until the next merge, or the next variable
+  change, on that branch.
 
 ## Logs
 
-- MCP: `get-logs`.
-- CLI: `railway logs --service <service>`
+Deployment logs for each service, from the deploy start time. A build
+that crashes before the app starts may show no app logs at all.
 
 ## Rollback
 
-- MCP: `redeploy` the deployment ID from Current version.
-- Or the Railway dashboard: Deployments, then Redeploy on the healthy one.
+Redeploy the deployment ID from Current version. A redeploy reuses that
+deployment's settings, including its start command.

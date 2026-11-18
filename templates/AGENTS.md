@@ -3,14 +3,59 @@
 <!-- Facts about this repo only. All rules and workflow come from estack.
      Do not copy estack rules here. Delete sections that do not apply. -->
 
+## Repo settings
+
+Settings and defaults are in estack `plugins/core/rules.md`. Add a row
+only to change a default.
+
+| Setting | Value |
+|---|---|
+| `<base branch>` | `<main>` |
+
 ## Deploy targets
 
 Platform must match a file in estack `plugins/core/skills/deploy/platforms/`.
+Rows go in release order. The last row is production.
 
-| Env | Platform | Target | URL | Health path |
-|---|---|---|---|---|
-| dev | compose-ssh | `<user>@<host>:<app-dir>` | `<dev-url>` | `/health` |
-| prod | `<railway / vercel>` | `<target>` | `<prod-url>` | `/health` |
+| Env | Platform | Target | Branch | URL | Health path |
+|---|---|---|---|---|---|
+| dev | compose-ssh | `<user>@<host>:<app-dir>` | `<branch>` | `<dev-url>` | `/health` |
+| prod | `<railway / vercel>` | `<target>` | `main` | `<prod-url>` | `/health` |
+
+## Deploy commands: <env>
+
+One section per row above. The exact commands for this repo. estack's
+`platforms/<platform>.md` says what each step must do and check.
+
+### Status
+
+```bash
+<command>
+```
+
+### Current version
+
+```bash
+<command>
+```
+
+### Deploy
+
+```bash
+<commands, in order>
+```
+
+### Logs
+
+```bash
+<command>
+```
+
+### Rollback
+
+```bash
+<command that returns to <version>>
+```
 
 ## Checks
 

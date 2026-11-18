@@ -16,7 +16,7 @@ Every change links to a ticket. No ticket? Stop and ask.
 ## 2. Build and plan
 
 1. `core:dev-start`, then make the change.
-2. Save the plan to `.artifacts/<task>/plan.txt`:
+2. Save the plan to `<proof folder>/plan.txt`:
 
    | Tool | Plan command |
    |---|---|

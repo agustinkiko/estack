@@ -5,10 +5,13 @@ description: Use when a code change is done and proven and the task calls for a 
 
 # Dev ship
 
-1. **Self-review** `git diff origin/main...HEAD`. Remove debug code, dead
+`<base branch>`, `<proof folder>`, and `<writing skill>` come from the
+repo settings in `core` rules.
+
+1. **Self-review** `git diff origin/<base branch>...HEAD`. Remove debug code, dead
    code, secrets, and files outside the task. Check every comment against
    `core:principle-why-only-comments`. Rerun the checks.
-2. **Shape the commits.** Rebase onto `origin/main` into small, ordered
+2. **Shape the commits.** Rebase onto `origin/<base branch>` into small, ordered
    commits:
    - Each commit builds and passes the checks on its own.
    - The order tells the story: a deletion before the new code, a failing
@@ -17,14 +20,14 @@ description: Use when a code change is done and proven and the task calls for a 
 
      ```bash
      git commit --fixup <sha>
-     GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash origin/main
+     GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash origin/<base branch>
      ```
 
    Rerun the checks on the last commit.
 3. **Write the messages.** Titles use Conventional Commits:
    `type(scope): subject`. Types are `feat`, `fix`, `docs`, `refactor`,
    `test`, `perf`, and `chore`. The subject is imperative with no period.
-   A body never repeats its title. Apply `core:write-plain`.
+   A body never repeats its title. Apply `<writing skill>`.
 4. **Push**: `git push -u origin <branch>`. After rebasing a pushed
    branch, add `--force-with-lease`.
 5. **Open the PR ready for review**, not as a draft. Use the repo's PR
@@ -43,16 +46,22 @@ description: Use when a code change is done and proven and the task calls for a 
    ## Blast radius
    Who or what it touches, and why that is safe.
    ## Verification
-   1-3 bullets: the real run and its result, from .artifacts/<task>/proof.md.
+   1-3 bullets: the real run and its result, from <proof folder>/proof.md.
    ```
 
    ```bash
-   gh pr create --title "<type(scope): subject>" --body-file <body.md>
+   gh pr create --base <base branch> --title "<type(scope): subject>" --body-file <body.md>
    ```
 
    Put screenshots or video after the sections.
-6. **Bot review**, if the repo has one (Greptile, CodeRabbit, Claude).
+6. **Fresh review.** Start a new agent with no chat history. Give it only
+   the PR diff, the task goal, and the repo's `AGENTS.md`. Ask it for
+   bugs and broken `core:principle-*` rules, each with a file and line.
+   Check each finding yourself. Fix the valid ones, push, and list what
+   it found in the PR. Skip this step if your tool cannot start an agent,
+   and say so in the report.
+7. **Bot review**, if the repo has one (Greptile, CodeRabbit, Claude).
    Fix valid findings and push. At most 3 rounds. Report the real result.
-7. **Report** the PR URL, checks run, and anything still open.
+8. **Report** the PR URL, checks run, and anything still open.
 
 Keep the worktree until the PR is merged or closed.
