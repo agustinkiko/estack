@@ -16,6 +16,9 @@ every work repo.
 - **Less slop.** The `principle-*` skills shape code while it is written.
 - **Better every lap.** A lesson goes into one home in estack. Every repo
   gets it in its next session.
+- **Decisions that stick.** `core:decisions` keeps a local trail for long
+  runs and a short `DECISIONS.md` of the choices a future agent must not
+  undo. Agents read it only when they need it.
 
 ## How it fits together
 
@@ -25,7 +28,8 @@ estack (this repo)
 
 each repo
 ├── .claude/settings.json   turns on core
-└── AGENTS.md               facts only: repo settings, deploy targets, checks, process
+├── AGENTS.md               facts only: repo settings, deploy targets, checks, process
+└── DECISIONS.md            past decisions and why, read on demand
 ```
 
 Rules are written once, in `plugins/core/rules.md`. A hook loads them at
@@ -41,8 +45,8 @@ a fork.
 
 | Plugin | Skills |
 |---|---|
-| core | `dev-start`, `dev-prove`, `dev-ship`, `deploy`, `change`, `incident`, `write-plain` |
-| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-fix-root-causes`, `principle-idempotent-operations` |
+| core | `dev-start`, `dev-prove`, `dev-ship`, `deploy`, `change`, `incident`, `decisions`, `write-plain` |
+| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-fix-root-causes`, `principle-idempotent-operations`, `principle-encode-lessons-in-structure` |
 
 Call a skill as `plugin:skill`, for example `core:deploy`. The agent also
 picks skills on its own from their descriptions.
