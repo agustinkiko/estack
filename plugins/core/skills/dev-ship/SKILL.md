@@ -1,6 +1,6 @@
 ---
 name: dev-ship
-description: Use when a code change is done and proven and the task calls for a PR. Self-reviews the diff, shapes small ordered commits, pushes, and opens a ready PR with the proof.
+description: Use when a code change is done and proven and the task calls for a PR. Self-reviews the diff, shapes small ordered commits, pushes, opens a ready PR with the proof, and merges it only when the repo's Auto-merge table allows.
 ---
 
 # Dev ship
@@ -62,6 +62,18 @@ repo settings in `core` rules.
    and say so in the report.
 7. **Bot review**, if the repo has one (Greptile, CodeRabbit, Claude).
    Fix valid findings and push. At most 3 rounds. Report the real result.
-8. **Report** the PR URL, checks run, and anything still open.
+8. **Auto-merge**, only if every one of these holds. Otherwise leave the
+   PR for a person.
+   - A row in the "Auto-merge" table of the repo's `AGENTS.md` fits the
+     change, and every file in the diff is inside that row's limits.
+   - `core:change` does not apply to the change.
+   - Step 6 ran, and steps 6 and 7 left no open finding.
+   - Every required check passed on the last commit.
+   - No person has commented on the PR or asked for changes.
+
+   Merge with the method the repo uses (`gh pr merge <number> --merge`,
+   `--squash`, or `--rebase`). Name the row you used in the PR.
+9. **Report** the PR URL, checks run, whether it was auto-merged and under
+   which row, and anything still open.
 
 Keep the worktree until the PR is merged or closed.

@@ -1,6 +1,6 @@
 {
   "name": "core",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Shared rules and skills for every repo: branches, proof, PRs, deploys, infra changes, incidents, plain writing.",
   "author": { "name": "agustinkiko" }
 }

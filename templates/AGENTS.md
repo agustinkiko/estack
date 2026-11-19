@@ -63,6 +63,17 @@ One section per row above. The exact commands for this repo. estack's
 - `<typecheck command>`
 - `<test command>`
 
+## Auto-merge
+
+Change types the agent may merge without asking. `core:dev-ship` lists
+the other conditions. No section means you review every PR. A row is
+your yes in advance, including to any deploy that the merge starts.
+
+| Change type | Limits |
+|---|---|
+| `<docs only>` | `<only *.md files>` |
+| `<dependency patch bump>` | `<manifest and lockfile only, patch versions>` |
+
 ## Process
 
 - Ticket key: <ABC>
