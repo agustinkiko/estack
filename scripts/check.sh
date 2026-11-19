@@ -50,7 +50,7 @@ for s in Status "Current version" Deploy Logs Rollback; do
 done
 
 # 6. Skills use repo settings, not the defaults from rules.md.
-for value in 'origin/main' 'agent/<task>' '../worktrees/' '.artifacts/' 'incidents/'; do
+for value in 'origin/main' 'agent/<task>' '../worktrees/' '.artifacts/' 'incidents/' 'DECISIONS.md'; do
   hits="$(grep -rlF --include="*.md" -- "$value" plugins templates | grep -v 'plugins/core/rules.md')"
   [ -z "$hits" ] || err "default '$value' hard-coded in $hits. Use the repo setting from rules.md."
 done

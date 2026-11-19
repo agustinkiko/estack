@@ -1,6 +1,6 @@
 # Notice
 
-The `principle-*` skills in `plugins/core/skills/` and `core:write-plain` are adapted from pstack by Poteto (https://github.com/cursor/plugins/tree/main/pstack, mirrored at https://github.com/backnotprop/pstack). They are shortened and rewritten for estack. pstack is under the MIT License, copied below.
+The `principle-*` skills in `plugins/core/skills/`, `core:write-plain`, and `core:decisions` (from pstack's `show-me-your-work` and `why`) are adapted from pstack by Poteto (https://github.com/cursor/plugins/tree/main/pstack, mirrored at https://github.com/backnotprop/pstack). They are shortened and rewritten for estack. pstack is under the MIT License, copied below.
 
 ---
 

@@ -19,14 +19,15 @@ health path.
 
 1. Read `platforms/<platform>.md` in this skill's folder. It says what
    each step must do and what to check, for any repo on that platform.
-2. Read the "Deploy commands: <env>" section in the repo's `AGENTS.md`.
-   It has the exact commands for the same five steps: Status, Current
+2. Read the "Deploy commands: <env>" section. It is in the repo's
+   `AGENTS.md`, or in a file `AGENTS.md` links to. It has the exact commands for the same five steps: Status, Current
    version, Deploy, Logs, Rollback.
 3. Run only the repo's commands. Check each result against the platform
    file.
 
 No commands for that environment? Write them with the user from the
-platform file, and add them to the repo's `AGENTS.md` before you deploy.
+platform file, and add them where the repo keeps its deploy commands
+before you deploy.
 No platform file? Copy `platforms/_template.md`, fill it in with the
 user, and add it to estack.
 
