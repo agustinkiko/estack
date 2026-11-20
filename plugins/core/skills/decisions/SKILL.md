@@ -23,17 +23,36 @@ after stepping away.
 1. Git must ignore `<proof folder>`. If
    `git check-ignore -q <proof folder>` fails, add the folder to
    `.git/info/exclude`.
-2. Write one row per decision. Separate cells with tabs and keep each
-   cell on one line. The header row is:
-   `ts  phase  decision  why  evidence  result`
+2. Add each row with `scripts/log.sh` in this skill's folder:
+   `scripts/log.sh <proof folder>/decisions.tsv <phase> <decision> <why> <evidence> <result>`.
+   It stamps the time, writes the header on first use, keeps each cell
+   on one line, and quotes cells a spreadsheet would run as a formula.
+   - `why` is the reason in plain words, as you would tell a teammate.
    - `evidence` is a pointer: a commit, a `file:line`, a test run, or a
      PR. Never prose.
    - `result` is a state, such as `tests pass`, `reverted`, or `open`.
 3. Log forks, finished units with their check result, reverts, and
    blockers. Skip routine steps.
 4. Append only. A wrong row gets a new row that supersedes it.
-5. Before the report, check each row against what happened. Fix the
-   log, not the story.
+5. A new run (a new chat, a pickup, or a replacement agent) that adds to
+   a trail with rows starts with phase `start`. Its decision names the
+   `ts` range of earlier rows it did not write. Its evidence names the
+   run, such as the agent ID. Use phase `start` for nothing else.
+6. **Audit before the report.** Walk this run's rows against what
+   happened:
+   - Each row maps to a real decision or action.
+   - Each evidence pointer resolves and shows what the row claims.
+   - A fork, pivot, or dropped approach that shaped the work but has no
+     row is a gap. Add it.
+
+   Fix the log, not the story: a wrong row gets a new row, never an edit.
+7. **Fresh review.** Start a fresh agent with no chat history, on another
+   model if your tool allows. Give it the trail. Ask it for rows with
+   weak or missing evidence, checks claimed without proof, choices that
+   look risky now, and gaps a quick read would miss. End the report with
+   an `Attention` section: the reviewer's model on the first line, then
+   each flag with its row. `No flags` is a valid answer. If your tool
+   cannot start an agent, say so there.
 
 The trail never goes in a commit. Copy the rows a reviewer needs into
 the PR.
