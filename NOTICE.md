@@ -1,6 +1,6 @@
 # Notice
 
-The `principle-*` skills in `plugins/core/skills/`, `core:write-plain`, and `core:decisions` (from pstack's `show-me-your-work` and `why`) are adapted from pstack by Poteto (https://github.com/cursor/plugins/tree/main/pstack, mirrored at https://github.com/backnotprop/pstack). They are shortened and rewritten for estack. pstack is under the MIT License, copied below.
+The `principle-*` skills in `plugins/core/skills/`, `core:write-plain`, `core:tdd`, `core:blast-radius`, `core:technical-writing`, `core:typescript-best-practices`, and `core:decisions` (from pstack's `show-me-your-work` and `why`, including `scripts/log.sh`) are adapted from pstack by Poteto (https://github.com/cursor/plugins/tree/main/pstack, mirrored at https://github.com/backnotprop/pstack). They are shortened and rewritten for estack. `core:python-best-practices` is new, modeled on pstack's `typescript-best-practices`. pstack is under the MIT License, copied below.
 
 ---
 

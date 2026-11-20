@@ -1,6 +1,6 @@
 {
   "name": "core",
-  "version": "0.6.0",
-  "description": "Shared rules and skills for every repo: branches, proof, PRs, deploys, infra changes, incidents, decisions, plain writing.",
+  "version": "0.7.0",
+  "description": "Shared rules and skills for every repo: branches, TDD, proof, blast radius, PRs, deploys, infra changes, incidents, decisions, TypeScript and Python rules, docs and plain writing.",
   "author": { "name": "agustinkiko" }
 }
