@@ -56,8 +56,20 @@ for value in 'origin/main' 'agent/<task>' '../worktrees/' '.artifacts/' 'inciden
 done
 
 # 7. Every script parses.
-for f in scripts/*.sh; do
+for f in scripts/*.sh plugins/*/skills/*/scripts/*.sh; do
+  [ -e "$f" ] || continue
   bash -n "$f" || err "$f: bash syntax error"
+done
+
+# 8. Agents can pick every skill on their own: no skill turns off model
+#    use, each description says when to use it, and every skill that is
+#    not a principle has a row in the rules.md Workflow table.
+for f in plugins/*/skills/*/SKILL.md; do
+  dir="$(basename "$(dirname "$f")")"
+  ! grep -q '^disable-model-invocation: *true' "$f" || err "$f: disable-model-invocation hides the skill from agents"
+  grep -qE '^description: "?(Use|Apply) ' "$f" || err "$f: description must start with 'Use' or 'Apply' and name the trigger"
+  case "$dir" in principle-*) continue ;; esac
+  grep -qF "\`core:$dir\`" plugins/core/rules.md || err "$f: no route in plugins/core/rules.md. Add a row to the Workflow table."
 done
 
 [ "$fail" = 0 ] && echo "all checks passed"

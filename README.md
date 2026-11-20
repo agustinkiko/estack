@@ -45,11 +45,17 @@ a fork.
 
 | Plugin | Skills |
 |---|---|
-| core | `dev-start`, `dev-prove`, `dev-ship`, `deploy`, `change`, `incident`, `decisions`, `write-plain` |
-| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-fix-root-causes`, `principle-idempotent-operations`, `principle-encode-lessons-in-structure` |
+| core | `dev-start`, `dev-prove`, `dev-ship`, `deploy`, `change`, `incident`, `decisions`, `tdd`, `blast-radius`, `technical-writing`, `write-plain` |
+| core languages | `typescript-best-practices`, `python-best-practices` |
+| core principles | `principle-smallest-diff`, `principle-subtract-before-you-add`, `principle-model-the-domain`, `principle-type-system-discipline`, `principle-minimize-reader-load`, `principle-boundary-discipline`, `principle-why-only-comments`, `principle-test-behavior`, `principle-prove-it-works`, `principle-explain-the-number`, `principle-fix-root-causes`, `principle-idempotent-operations`, `principle-sequence-verifiable-units`, `principle-migrate-callers-then-delete-legacy-apis`, `principle-exhaust-the-design-space`, `principle-encode-lessons-in-structure` |
 
 Call a skill as `plugin:skill`, for example `core:deploy`. The agent also
-picks skills on its own from their descriptions.
+picks skills on its own: each description says when to use it, and the
+Workflow table in `plugins/core/rules.md` routes every skill that is not
+a principle. `scripts/check.sh` fails if a skill has no route.
+
+The language skills load on their own when the agent touches a `.ts`,
+`.tsx`, `.py`, or `.pyi` file.
 
 The principle skills are code rules that cut AI slop while code is
 written. To steer the agent, name one: "apply subtract before you add".

@@ -11,6 +11,8 @@ one home.
 | Codex copy of the rules | generated into `~/.codex/AGENTS.md` by `scripts/codex-setup.sh`. Never edit it. |
 | How to do a task | one skill in `plugins/<plugin>/skills/<name>/SKILL.md` |
 | Code-quality rules | one `principle-*` skill each in `plugins/core/skills/` |
+| Language rules | one `<language>-best-practices` skill each in `plugins/core/skills/` |
+| When an agent uses a skill | its `description`, plus a row in the Workflow table of `plugins/core/rules.md` for every skill that is not a `principle-*` |
 | Credit for adapted work | `NOTICE.md` |
 | Deploy process per platform | `plugins/core/skills/deploy/platforms/<platform>.md` |
 | Deploy commands, hosts, paths | each repo's `AGENTS.md`, or a file it links, under "Deploy commands: <env>" |
@@ -28,6 +30,9 @@ one home.
 - New platform: copy `platforms/_template.md`. Platform files hold
   process only, with no code blocks. Commands belong to the repo.
 - Every skill goes in `core`. There is one plugin.
+- Agents must be able to pick every skill on their own. Never set
+  `disable-model-invocation`. Start each `description` with "Use when" or
+  "Apply when" and name the trigger.
 - This repo is public. No company names, hostnames, IPs, account IDs, or
   secrets. Those go in each repo's own `AGENTS.md`.
 - Bump `version` in the plugin's `plugin.json` when you change that plugin.
@@ -35,4 +40,5 @@ one home.
 ## Checks
 
 - `scripts/check.sh` validates manifests, skill names, skill references,
-  platform sections, and flags rules copied out of `rules.md`.
+  platform sections, and skill routing, and flags rules copied out of
+  `rules.md`.
