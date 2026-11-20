@@ -72,7 +72,9 @@ Questions, reviews, and research need no branch, commit, or PR.
 
 ## Safety
 
-- Never commit to `<base branch>`. Never merge unless asked.
+- Never commit to `<base branch>`. Never merge unless asked. A row in
+  the repo's "Auto-merge" table counts as asking, but only when
+  `core:dev-ship` says the PR qualifies.
 - Force push only with `--force-with-lease`, only on your own branch.
 - Never print secret values. Show variable names only.
 - Never capture or paste secrets, customer data, or internal hostnames
