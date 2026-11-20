@@ -1,7 +1,11 @@
 # <REPO NAME>
 
 <!-- Facts about this repo only. All rules and workflow come from estack.
-     Do not copy estack rules here. Delete sections that do not apply. -->
+     Do not copy estack rules here. Delete sections that do not apply.
+     Agents load this file every session, so keep it short. Move long
+     sections, such as deploy commands, into files it links, and say when
+     to read each one. Past decisions go in the decisions file from
+     estack `core:decisions`. -->
 
 ## Repo settings
 

@@ -5,12 +5,15 @@ description: Use when a code change is done and proven and the task calls for a 
 
 # Dev ship
 
-`<base branch>`, `<proof folder>`, and `<writing skill>` come from the
-repo settings in `core` rules.
+`<base branch>`, `<proof folder>`, `<writing skill>`, and
+`<decisions file>` come from the repo settings in `core` rules.
 
 1. **Self-review** `git diff origin/<base branch>...HEAD`. Remove debug code, dead
    code, secrets, and files outside the task. Check every comment against
-   `core:principle-why-only-comments`. Rerun the checks.
+   `core:principle-why-only-comments`. Rerun the checks. If the change
+   settles a choice that meets the bar in `core:decisions`, add or
+   supersede its entry in `<decisions file>`, and update "Where things
+   stand" if the change moves it.
 2. **Shape the commits.** Rebase onto `origin/<base branch>` into small, ordered
    commits:
    - Each commit builds and passes the checks on its own.

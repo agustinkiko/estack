@@ -8,7 +8,9 @@ Skills and repo files add to them and never repeat them.
 - Repo facts (deploy targets, checks, process) are in the
   repo's `AGENTS.md`. If a fact you need is missing, ask. Do not guess.
 - Deploy process is in `core:deploy`. Deploy commands are in the repo's
-  `AGENTS.md`.
+  `AGENTS.md`, or in a file it links.
+- Past decisions and their reasons are in `<decisions file>`. Read it on
+  demand with `core:decisions`, never whole at session start.
 
 ## Repo settings
 
@@ -25,6 +27,7 @@ never the default values.
 | `<docs home>` | the repo's `docs/` folder |
 | `<writing skill>` | `core:write-plain` |
 | `<verify skill>` | none |
+| `<decisions file>` | `DECISIONS.md` |
 
 ## Start of every task
 
@@ -44,6 +47,7 @@ Questions, reviews, and research need no branch, commit, or PR.
 | Deploy or live config change | `core:deploy` |
 | Something is broken | `core:incident` |
 | Infrastructure or pipeline change | `core:change` |
+| Long run, a choice worth keeping, or a "why" question | `core:decisions` |
 | Any text a person reads | `<writing skill>` |
 
 ## Principles

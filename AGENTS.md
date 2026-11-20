@@ -13,8 +13,9 @@ one home.
 | Code-quality rules | one `principle-*` skill each in `plugins/core/skills/` |
 | Credit for adapted work | `NOTICE.md` |
 | Deploy process per platform | `plugins/core/skills/deploy/platforms/<platform>.md` |
-| Deploy commands, hosts, paths | each repo's `AGENTS.md`, under "Deploy commands: <env>" |
+| Deploy commands, hosts, paths | each repo's `AGENTS.md`, or a file it links, under "Deploy commands: <env>" |
 | Facts about one repo | that repo's `AGENTS.md` (from `templates/AGENTS.md`) |
+| Past decisions in one repo | that repo's decisions file (from `templates/decisions-file.md`) |
 | Which plugins a repo uses | that repo's `.claude/settings.json` (from `scripts/init-repo.sh`) |
 | Plugin description and version | `plugins/<plugin>/.claude-plugin/plugin.json` |
 | README diagram | `docs/estack.svg`. Update it when skills or the workflow change. |
