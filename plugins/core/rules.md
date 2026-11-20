@@ -44,6 +44,10 @@ Questions, reviews, and research need no branch, commit, or PR.
 |---|---|
 | Code change | `core:dev-start` → build → `core:dev-prove` → `core:dev-ship` |
 | Writing or reviewing code | every `core:principle-*` skill whose description fits |
+| TypeScript or Python code | `core:typescript-best-practices` or `core:python-best-practices` |
+| Bug fix with a cheap test path, or a request for TDD | `core:tdd`, before the fix |
+| Shared code, a contract, a deletion, or "what could this break" | `core:blast-radius`, before the PR |
+| A doc page: README, how-to, runbook, reference, RFC | `core:technical-writing`, then `<writing skill>` |
 | Deploy or live config change | `core:deploy` |
 | Something is broken | `core:incident` |
 | Infrastructure or pipeline change | `core:change` |

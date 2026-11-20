@@ -10,15 +10,16 @@ description: Use when a code change is done and proven and the task calls for a 
 
 1. **Self-review** `git diff origin/<base branch>...HEAD`. Remove debug code, dead
    code, secrets, and files outside the task. Check every comment against
-   `core:principle-why-only-comments`. Rerun the checks. If the change
-   settles a choice that meets the bar in `core:decisions`, add or
+   `core:principle-why-only-comments`. Rerun the checks. If the diff
+   changes shared code or a contract (API, schema, wire format, env var,
+   config key, flag), or deletes a symbol, run `core:blast-radius`. If
+   the change settles a choice that meets the bar in `core:decisions`, add or
    supersede its entry in `<decisions file>`, and update "Where things
    stand" if the change moves it.
 2. **Shape the commits.** Rebase onto `origin/<base branch>` into small, ordered
    commits:
-   - Each commit builds and passes the checks on its own.
-   - The order tells the story: a deletion before the new code, a failing
-     test before the fix.
+   - Each commit passes the checks on its own, and the order proves the
+     work (`core:principle-sequence-verifiable-units`).
    - A fix-up goes into the commit it belongs to:
 
      ```bash
@@ -47,7 +48,8 @@ description: Use when a code change is done and proven and the task calls for a 
    ## Tradeoffs
    Only rejected options a reviewer would ask about.
    ## Blast radius
-   Who or what it touches, and why that is safe.
+   Who or what it touches, and why that is safe. The report from
+   core:blast-radius, if step 1 ran it.
    ## Verification
    1-3 bullets: the real run and its result, from <proof folder>/proof.md.
    ```
@@ -59,7 +61,9 @@ description: Use when a code change is done and proven and the task calls for a 
    Put screenshots or video after the sections.
 6. **Fresh review.** Start a new agent with no chat history. Give it only
    the PR diff, the task goal, and the repo's `AGENTS.md`. Ask it for
-   bugs and broken `core:principle-*` rules, each with a file and line.
+   bugs and broken rules from `core:principle-*` and the language skill
+   (`core:typescript-best-practices`, `core:python-best-practices`), each
+   with a file and line.
    Check each finding yourself. Fix the valid ones, push, and list what
    it found in the PR. Skip this step if your tool cannot start an agent,
    and say so in the report.
